@@ -4,13 +4,16 @@ namespace WebAPI.Models
 {
     public class LeasingDbContext : DbContext
     {
-        public LeasingDbContext(DbContextOptions<LeasingDbContext> options) : base(options) //DbContextOptions ce db este folosita si detalii de conectare ca sunt primite ca parametrii din Startup.cs prin DependencyInjection
+        //DbContextOptions ce db este folosita si detalii de conectare ca sunt primite ca parametrii din Startup.cs prin DependencyInjection
+        public LeasingDbContext(DbContextOptions<LeasingDbContext> options) : base(options)
         {
 
         }
 
         public DbSet<AssetHierarchy> AssetHierarchy { get; set; }
 
-       // public DbSet<OfferList> OfferList { get; set; }
+        public DbSet<LeasingDocument> LeasingDocument { get; set; }
+
+        public DbSet<Document> Document { get; set; }
     }
 }
