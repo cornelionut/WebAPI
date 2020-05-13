@@ -32,6 +32,5 @@ namespace WebAPI.Models
 
         public string ImageUrl { get; set; }
 
-//        public virtual AssetHierarchy Parent { get; set; }
     }
 }
