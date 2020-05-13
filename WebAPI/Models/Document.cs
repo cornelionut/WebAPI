@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,6 +14,6 @@ namespace WebAPI.Models
 
         public DateTime DocumentDate { get; set; }
 
-      //  public virtual ICollection<LeasingDocument> LeasingDocuments { get; set; }
+        public DocumentDetail DocumentDetail { get;set;}
     }
 }
