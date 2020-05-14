@@ -49,6 +49,13 @@ namespace WebAPI.Controllers
             return _leasingRepository.GetOffers().ToList();
         }
 
+        // GET: api/LeasingDocument
+        [HttpGet("GetLeasingDocument/{leasingDocumentId}")]
+        public ActionResult<LeasingDocument> GetOffer(int leasingDocumentId)
+        {
+            return _leasingRepository.GetOffer(leasingDocumentId);
+        }
+
         // GET: api/Documents
         [HttpGet("GetDocument")]
         public ActionResult<IEnumerable<Document>> GetDocuments()

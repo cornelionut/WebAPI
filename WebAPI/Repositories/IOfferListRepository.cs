@@ -13,6 +13,8 @@ namespace WebAPI.Repositories
 
         public IEnumerable<LeasingDocument> GetOffers();
 
+        public LeasingDocument GetOffer(int leasingDocumentId);
+
         public IEnumerable<Document> GetDocuments();
 
         //public Task<AssetHierarchy> PutAssetHierarchy(int id, AssetHierarchy assetHierarchy);

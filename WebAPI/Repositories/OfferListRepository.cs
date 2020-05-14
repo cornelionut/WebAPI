@@ -27,11 +27,22 @@ namespace WebAPI.Repositories
         public IEnumerable<LeasingDocument> GetOffers()
         {
             return _context.LeasingDocument
-                .Include(l=>l.Document).ThenInclude(m=>m.DocumentDetail).ThenInclude(n=>n.Item).ThenInclude(n => n.AssetHierarchy)
-                .Include(l=>l.Partner)
-                .Include(l=>l.Product)
-                .Include(l=>l.Currency)
+                .Include(l => l.Document).ThenInclude(m => m.DocumentDetail).ThenInclude(n => n.Item).ThenInclude(n => n.AssetHierarchy)
+                .Include(l => l.Partner)
+                .Include(l => l.Product)
+                .Include(l => l.Currency)
                 .ToList();
+        }
+
+        public LeasingDocument GetOffer(int leasingDocumentId)
+        {
+            return _context.LeasingDocument
+                 .Include(l => l.Document).ThenInclude(m => m.DocumentDetail).ThenInclude(n => n.Item).ThenInclude(n => n.AssetHierarchy)
+                .Include(l => l.Partner)
+                .Include(l => l.Product)
+                .Include(l => l.Currency)
+                .Where(l => l.LeasingDocumentId == leasingDocumentId)
+                .FirstOrDefault();
         }
 
         public IEnumerable<Document> GetDocuments()
