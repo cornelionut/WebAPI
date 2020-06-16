@@ -1,21 +1,30 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using WebAPI.Models;
 
 namespace WebAPI.Repositories
 {
     public interface IOfferListRepository
     {
-        // public IEnumerable<OfferList> GetOfferList();
-
         public IEnumerable<AssetHierarchy> GetAssets();
 
-        public IEnumerable<AssetHierarchy> GetAssets(int assetHierarchyId);
+        public IEnumerable<AssetHierarchy> GetAsset(int assetHierarchyId);
 
-        public IEnumerable<LeasingDocument> GetOffers();
+        public IEnumerable<AssetHierarchy> GetAssetTypes();
 
-        public LeasingDocument GetOffer(int leasingDocumentId);
+        public IEnumerable<AssetHierarchy> GetCarMakes();
+
+        public IEnumerable<AssetHierarchy> GetCarModels();
+
+        public IEnumerable<AssetHierarchy> GetCarVersions();
+
+        public Task<List<LeasingDocument>> GetOffers();
+
+        public IEnumerable<LeasingDocument> GetOffer(int leasingDocumentId);
 
         public IEnumerable<Document> GetDocuments();
+
+        // public IEnumerable<OfferList> GetOfferList();
 
         //public Task<AssetHierarchy> PutAssetHierarchy(int id, AssetHierarchy assetHierarchy);
 

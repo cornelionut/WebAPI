@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Models;
 using WebAPI.Repositories;
@@ -32,7 +33,7 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<IEnumerable<AssetHierarchy>> GetAssetHierarchy(int id)
         {
-            var assetHierarchy = _leasingRepository.GetAssets(id).ToList();
+            var assetHierarchy = _leasingRepository.GetAsset(id).ToList();
 
             if (assetHierarchy == null)
             {
@@ -44,16 +45,16 @@ namespace WebAPI.Controllers
 
         // GET: api/OfferList
         [HttpGet("GetOffer")]
-        public ActionResult<IEnumerable<LeasingDocument>> GetOfferList()
+        public async Task<ActionResult<List<LeasingDocument>>> GetOfferList()
         {
-            return _leasingRepository.GetOffers().ToList();
+            return await _leasingRepository.GetOffers();
         }
 
         // GET: api/LeasingDocument
         [HttpGet("GetLeasingDocument/{leasingDocumentId}")]
-        public ActionResult<LeasingDocument> GetOffer(int leasingDocumentId)
+        public ActionResult<IEnumerable<LeasingDocument>> GetOffer(int leasingDocumentId)
         {
-            return _leasingRepository.GetOffer(leasingDocumentId);
+            return _leasingRepository.GetOffer(leasingDocumentId).ToList();
         }
 
         // GET: api/Documents
@@ -61,6 +62,41 @@ namespace WebAPI.Controllers
         public ActionResult<IEnumerable<Document>> GetDocuments()
         {
             return _leasingRepository.GetDocuments().ToList();
+        }
+
+        // GET: api/Asset
+        [HttpGet("GetAsset/{itemId}")]
+        public ActionResult<IEnumerable<AssetHierarchy>> GetAsset(int assetHierarchyId)
+        {
+            return _leasingRepository.GetAsset(assetHierarchyId).ToList();
+        }
+
+        // GET: api/AssetType
+        [HttpGet("GetAssetTypes")]
+        public ActionResult<IEnumerable<AssetHierarchy>> GetAssetType()
+        {
+            return _leasingRepository.GetAssetTypes().ToList();
+        }
+
+        // GET: api/CarMake
+        [HttpGet("GetCarMakes")]
+        public ActionResult<IEnumerable<AssetHierarchy>> GetCarMake()
+        {
+            return _leasingRepository.GetCarMakes().ToList();
+        }
+
+        // GET: api/CarModels
+        [HttpGet("GetCarModels")]
+        public ActionResult<IEnumerable<AssetHierarchy>> GetCarModels()
+        {
+            return _leasingRepository.GetCarModels().ToList();
+        }
+
+        // GET: api/CarVersions
+        [HttpGet("GetCarVersions")]
+        public ActionResult<IEnumerable<AssetHierarchy>> GetCarVersions()
+        {
+            return _leasingRepository.GetCarVersions().ToList();
         }
 
         //// PUT: api/AssetHierarchies/5

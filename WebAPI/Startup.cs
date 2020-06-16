@@ -37,6 +37,7 @@ namespace WebAPI
 
             //Repository is registered to the container
             services.AddScoped<IOfferListRepository, OfferListRepository>();
+            services.AddScoped<ILoginRepository, LoginRepository>();
 
             //Create dependency injection for DB Context class and ConnectionString is defined in appsettings.json
             services.AddDbContext<LeasingDbContext>(options =>

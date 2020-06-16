@@ -15,10 +15,13 @@ namespace WebAPI.Models
 
         public int Quantity { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal TVA { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal TotalValue { get; set; }
 
         public Item Item { get; set; }

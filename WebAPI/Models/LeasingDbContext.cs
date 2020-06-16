@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WebAPI.Models;
 
 namespace WebAPI.Models
 {
@@ -15,5 +16,7 @@ namespace WebAPI.Models
         public DbSet<LeasingDocument> LeasingDocument { get; set; }
 
         public DbSet<Document> Document { get; set; }
+
+        public DbSet<Register> Users { get; set; }
     }
 }

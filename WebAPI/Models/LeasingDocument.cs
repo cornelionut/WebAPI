@@ -17,10 +17,13 @@ namespace WebAPI.Models
 
         public int PartnerId { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Commission { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal ResidualValue { get; set; }
 
         public Document Document { get; set; }

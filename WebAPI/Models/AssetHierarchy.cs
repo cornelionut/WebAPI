@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,7 +9,7 @@ namespace WebAPI.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int AssetHierarchyId { get; set; }
 
         public string Code { get; set; }
 
@@ -28,9 +29,18 @@ namespace WebAPI.Models
 
         public DateTime ValidTo { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? ListPrice { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public string CarMake { get; set; }
+
+        //public virtual AssetHierarchy Parent { get; set; }
+
+        //public virtual ICollection<AssetHierarchy> Children { get; set; }
+
+        //public Item Item { get; set; }
 
     }
 }
