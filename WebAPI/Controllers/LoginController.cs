@@ -42,37 +42,37 @@ namespace WebAPI.Controllers
         //        return register;
         //    }
 
-        //    // PUT: api/Login/5
-        //    // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        //    // more details see https://aka.ms/RazorPagesCRUD.
-        //    [HttpPut("{id}")]
-        //    public async Task<IActionResult> PutRegister(int id, Register register)
+        //// PUT: api/Login/5
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        //// more details see https://aka.ms/RazorPagesCRUD.
+        //[HttpPut("UpdateUser/{id}")]
+        //public async Task<IActionResult> PutRegister(int id, Register register)
+        //{
+        //    if (id != register.UserId)
         //    {
-        //        if (id != register.Id)
-        //        {
-        //            return BadRequest();
-        //        }
-
-        //        _context.Entry(register).State = EntityState.Modified;
-
-        //        try
-        //        {
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!RegisterExists(id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-
-        //        return NoContent();
+        //        return BadRequest();
         //    }
+
+        //    _context.Entry(register).State = EntityState.Modified;
+
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!RegisterExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return NoContent();
+        //}
 
         // POST: api/Login
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
@@ -97,20 +97,28 @@ namespace WebAPI.Controllers
             return new Response { Status = "Error", Message = "Invalid Data." };
         }
 
-        [Route("Login")]
+        [Route("Authenticate")]
         [HttpPost]
         public async Task<ActionResult<Response>> Login(Login login)
         {
             var userExistent = await _loginRepository.Login(login);
 
-         //   var log = DB.EmployeeLogins.Where(x => x.Email.Equals(login.Email) && x.Password.Equals(login.Password)).FirstOrDefault();
+            //   var log = DB.EmployeeLogins.Where(x => x.Email.Equals(login.Email) && x.Password.Equals(login.Password)).FirstOrDefault();
 
-            if (userExistent.Count() == 0)
+            if (userExistent.Count() != 0)
             {
-                return new Response { Status = "Invalid", Message = "Invalid User." };
+                if (userExistent.FirstOrDefault().IsAdmin == true)
+                {
+                    return new Response { Status = "Success", Message = "Login Successfully", IsAdmin = true };
+                }
+                else if (userExistent.FirstOrDefault().IsAdmin == false)
+                    return new Response { Status = "Success", Message = "Login Successfully", IsAdmin = false };
+
             }
             else
-                return new Response { Status = "Success", Message = "Login Successfully" };
+                return new Response { Status = "Invalid", Message = "Invalid User." };
+            return null;
+
         }
 
         //    // DELETE: api/Login/5

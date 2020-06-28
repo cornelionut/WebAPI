@@ -29,7 +29,7 @@ namespace WebAPI.Repositories
 
         public async Task<IEnumerable<Register>> Login(Login login)
         {
-            var user = await _context.Users.Where(x => x.Username == login.Username && x.Password == login.Password).ToListAsync();
+            var user = await _context.Users.Where(x => x.Email == login.Email && x.Password == login.Password).ToListAsync();
             return user;
         }
 
